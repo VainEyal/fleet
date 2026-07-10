@@ -6242,6 +6242,10 @@ func (h *Home) loadSessions() tea.Msg {
 	// or don't support it (Apple Terminal). Runs here for users with existing
 	// sessions; Start covers fresh installs once a server exists.
 	tmux.EnsureCopyCommand()
+	// Forward extended keys (Shift+Enter et al.) into panes so the agent gets a
+	// real newline instead of a submit. Runs here for users with existing
+	// sessions; Start covers fresh installs once a server exists.
+	tmux.EnsureExtendedKeys()
 	chrome.InstallNativeMessagingHost()
 	ghAvailable := github.IsGHAvailable()
 
